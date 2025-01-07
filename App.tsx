@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import EmptyList from './components/EmptyList';
 import FooterList from './components/FooterList';
@@ -50,13 +50,16 @@ export default function App() {
 					// ItemSeparatorComponent={() => (
 					// 	<View style={{ height: 2, backgroundColor: 'lightgray' }} />
 					// )}
-					// refreshControl={
-					// 	<RefreshControl
-					// 		refreshing={refreshing}
-					// 		onRefresh={handleRefresh}
-					// 	/>
-					// }
-
+					refreshControl={
+						<RefreshControl
+							refreshing={refreshing}
+							onRefresh={handleRefresh}
+							colors={['red', 'green', 'blue']}
+							tintColor="red"
+							title="Refreshing..."
+							titleColor="red"
+						/>
+					}
 					refreshing={refreshing}
 					onRefresh={handleRefresh}
 					// numColumns={2}
