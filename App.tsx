@@ -60,8 +60,8 @@ export default function App() {
 							titleColor="red"
 						/>
 					}
-					refreshing={refreshing}
-					onRefresh={handleRefresh}
+					// refreshing={refreshing}
+					// onRefresh={handleRefresh}
 					// numColumns={2}
 					// columnWrapperStyle={{ gap: 10 }}
 				/>
