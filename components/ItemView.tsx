@@ -5,6 +5,7 @@ type ItemViewProps = {
 };
 
 export default function ItemView({ item }: ItemViewProps) {
+	console.log('ItemView render', item.id);
 	return (
 		<View style={styles.itemContainer}>
 			<Text style={styles.title}>{item.title}</Text>
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
-		padding: 20,
+		padding: 40,
 		backgroundColor: 'lightgray',
 	},
 	title: {

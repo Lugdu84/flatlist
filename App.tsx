@@ -18,6 +18,9 @@ export default function App() {
 		{ id: '6', title: 'Item 6' },
 		{ id: '7', title: 'Item 7' },
 		{ id: '8', title: 'Item 8' },
+		{ id: '9', title: 'Item 9' },
+		{ id: '10', title: 'Item 10' },
+		{ id: '11', title: 'Item 11' },
 	]);
 
 	const handleRefresh = () => {
@@ -50,6 +53,7 @@ export default function App() {
 					// 		onRefresh={handleRefresh}
 					// 	/>
 					// }
+
 					refreshing={refreshing}
 					onRefresh={handleRefresh}
 					// numColumns={2}
