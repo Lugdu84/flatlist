@@ -5,7 +5,6 @@ type ItemViewProps = {
 };
 
 export default function ItemView({ item }: ItemViewProps) {
-	console.log('ItemView render', item.id);
 	return (
 		<View style={styles.itemContainer}>
 			<Text style={styles.title}>{item.title}</Text>

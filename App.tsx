@@ -1,9 +1,9 @@
-import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { FlatList, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import EmptyList from './components/EmptyList';
 import FooterList from './components/FooterList';
 import InputSearch from './components/InputSearch';
-import { useState } from 'react';
 import ItemView from './components/ItemView';
 
 export default function App() {
@@ -47,6 +47,9 @@ export default function App() {
 					ListHeaderComponent={<InputSearch />}
 					ListHeaderComponentStyle={styles.headerStyle}
 					ListEmptyComponent={<EmptyList />}
+					// ItemSeparatorComponent={() => (
+					// 	<View style={{ height: 2, backgroundColor: 'lightgray' }} />
+					// )}
 					// refreshControl={
 					// 	<RefreshControl
 					// 		refreshing={refreshing}
