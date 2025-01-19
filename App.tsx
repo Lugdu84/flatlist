@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+import {
+	FlatList,
+	RefreshControl,
+	SectionList,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import EmptyList from './components/EmptyList';
 import FooterList from './components/FooterList';
@@ -10,17 +17,50 @@ export default function App() {
 	const [refreshing, setRefreshing] = useState(false);
 
 	const [data, setData] = useState<ItemData[]>([
-		{ id: '1', title: 'Item 1' },
-		{ id: '2', title: 'Item 2' },
-		{ id: '3', title: 'Item 3' },
-		{ id: '4', title: 'Item 4' },
-		{ id: '5', title: 'Item 5' },
-		{ id: '6', title: 'Item 6' },
-		{ id: '7', title: 'Item 7' },
-		{ id: '8', title: 'Item 8' },
-		{ id: '9', title: 'Item 9' },
-		{ id: '10', title: 'Item 10' },
-		{ id: '11', title: 'Item 11' },
+		{ id: '1', title: 'javascript' },
+		{ id: '2', title: 'swift' },
+		{ id: '3', title: 'java' },
+		{ id: '4', title: 'React' },
+		{ id: '5', title: 'Anuglar' },
+		{ id: '6', title: 'Vue' },
+		{ id: '7', title: 'Express' },
+		{ id: '8', title: 'Nest' },
+		{ id: '9', title: 'React Native' },
+		{ id: '10', title: 'SwiftUI' },
+		{ id: '11', title: 'UIKit' },
+	]);
+	const [sections, setSections] = useState([
+		{
+			title: 'Langages',
+			data: [
+				{ id: '1', title: 'javascript' },
+				{ id: '2', title: 'swift' },
+				{ id: '3', title: 'java' },
+			],
+		},
+		{
+			title: 'Framworks web',
+			data: [
+				{ id: '4', title: 'React' },
+				{ id: '5', title: 'Anuglar' },
+				{ id: '6', title: 'Vue' },
+			],
+		},
+		{
+			title: 'Framworks back',
+			data: [
+				{ id: '7', title: 'Express' },
+				{ id: '8', title: 'Nest' },
+			],
+		},
+		{
+			title: 'Framworks mobile',
+			data: [
+				{ id: '9', title: 'React Native' },
+				{ id: '10', title: 'SwiftUI' },
+				{ id: '11', title: 'UIKit' },
+			],
+		},
 	]);
 
 	const handleRefresh = () => {
@@ -37,9 +77,20 @@ export default function App() {
 	return (
 		<SafeAreaProvider>
 			<SafeAreaView style={styles.container}>
-				<FlatList
+				<SectionList
 					contentContainerStyle={styles.content}
-					data={data}
+					renderSectionHeader={({ section: { title } }) => (
+						<Text style={{ fontSize: 24, fontWeight: 'bold' }}>{title}</Text>
+					)}
+					renderSectionFooter={({ section }) => (
+						<Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+							{section.data.length} items
+						</Text>
+					)}
+					SectionSeparatorComponent={() => (
+						<View style={{ height: 3, backgroundColor: 'red', margin: 5 }} />
+					)}
+					sections={sections}
 					renderItem={({ item }) => <ItemView item={item} />}
 					keyExtractor={(item) => item.id}
 					ListFooterComponent={<FooterList numberOfItems={data.length} />}
@@ -47,9 +98,6 @@ export default function App() {
 					ListHeaderComponent={<InputSearch />}
 					ListHeaderComponentStyle={styles.headerStyle}
 					ListEmptyComponent={<EmptyList />}
-					// ItemSeparatorComponent={() => (
-					// 	<View style={{ height: 2, backgroundColor: 'lightgray' }} />
-					// )}
 					refreshControl={
 						<RefreshControl
 							refreshing={refreshing}
@@ -60,10 +108,6 @@ export default function App() {
 							titleColor="red"
 						/>
 					}
-					// refreshing={refreshing}
-					// onRefresh={handleRefresh}
-					// numColumns={2}
-					// columnWrapperStyle={{ gap: 10 }}
 				/>
 			</SafeAreaView>
 		</SafeAreaProvider>
