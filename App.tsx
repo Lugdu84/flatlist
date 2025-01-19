@@ -77,20 +77,9 @@ export default function App() {
 	return (
 		<SafeAreaProvider>
 			<SafeAreaView style={styles.container}>
-				<SectionList
+				<FlatList
 					contentContainerStyle={styles.content}
-					renderSectionHeader={({ section: { title } }) => (
-						<Text style={{ fontSize: 24, fontWeight: 'bold' }}>{title}</Text>
-					)}
-					renderSectionFooter={({ section }) => (
-						<Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-							{section.data.length} items
-						</Text>
-					)}
-					SectionSeparatorComponent={() => (
-						<View style={{ height: 3, backgroundColor: 'red', margin: 5 }} />
-					)}
-					sections={sections}
+					data={data}
 					renderItem={({ item }) => <ItemView item={item} />}
 					keyExtractor={(item) => item.id}
 					ListFooterComponent={<FooterList numberOfItems={data.length} />}
